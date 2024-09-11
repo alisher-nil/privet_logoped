@@ -1,0 +1,665 @@
+openapi: 3.0.3
+info:
+  title: Privet Logoped API
+  version: 1.0.0
+  description: Бэкенд для ботов Privet Logoped
+paths:
+  /api/v1/common/commands/:
+    get:
+      operationId: api_v1_common_commands_list
+      tags:
+        - api
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Commands"
+          description: ""
+  /api/v1/common/timezones/:
+    get:
+      operationId: api_v1_common_timezones_retrieve
+      tags:
+        - api
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/v1/telegram/answers/:
+    get:
+      operationId: api_v1_telegram_answers_list
+      tags:
+        - api
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AnswerRead"
+          description: ""
+  /api/v1/telegram/answers/confirm_sent/:
+    post:
+      operationId: api_v1_telegram_answers_confirm_sent_create
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnswerRead"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/AnswerRead"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/AnswerRead"
+        required: true
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnswerRead"
+          description: ""
+  /api/v1/telegram/user_query/:
+    post:
+      operationId: api_v1_telegram_user_query_create
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TelegramQueryWrite"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/TelegramQueryWrite"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/TelegramQueryWrite"
+        required: true
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TelegramQueryWrite"
+          description: ""
+  /api/v1/telegram/users/:
+    post:
+      operationId: api_v1_telegram_users_create
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TelegramUser"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/TelegramUser"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/TelegramUser"
+        required: true
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TelegramUser"
+          description: ""
+  /api/v1/telegram/users/{user_id}/:
+    get:
+      operationId: api_v1_telegram_users_retrieve
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+            title: ID пользователя
+          required: true
+      tags:
+        - api
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TelegramUser"
+          description: ""
+    put:
+      operationId: api_v1_telegram_users_update
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+            title: ID пользователя
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TelegramUserUpdate"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/TelegramUserUpdate"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/TelegramUserUpdate"
+        required: true
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TelegramUserUpdate"
+          description: ""
+    patch:
+      operationId: api_v1_telegram_users_partial_update
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+            title: ID пользователя
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedTelegramUserUpdate"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/PatchedTelegramUserUpdate"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PatchedTelegramUserUpdate"
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TelegramUserUpdate"
+          description: ""
+  /api/v1/vk/answers/:
+    get:
+      operationId: api_v1_vk_answers_list
+      tags:
+        - api
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AnswerRead"
+          description: ""
+  /api/v1/vk/answers/confirm_sent/:
+    post:
+      operationId: api_v1_vk_answers_confirm_sent_create
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnswerRead"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/AnswerRead"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/AnswerRead"
+        required: true
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnswerRead"
+          description: ""
+  /api/v1/vk/user_query/:
+    post:
+      operationId: api_v1_vk_user_query_create
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VKQueryWrite"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/VKQueryWrite"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/VKQueryWrite"
+        required: true
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VKQueryWrite"
+          description: ""
+  /api/v1/vk/users/:
+    post:
+      operationId: api_v1_vk_users_create
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VKUser"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/VKUser"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/VKUser"
+        required: true
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VKUser"
+          description: ""
+  /api/v1/vk/users/{user_id}/:
+    get:
+      operationId: api_v1_vk_users_retrieve
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+            title: ID пользователя
+          required: true
+      tags:
+        - api
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VKUser"
+          description: ""
+    put:
+      operationId: api_v1_vk_users_update
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+            title: ID пользователя
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VKUserUpdate"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/VKUserUpdate"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/VKUserUpdate"
+        required: true
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VKUserUpdate"
+          description: ""
+    patch:
+      operationId: api_v1_vk_users_partial_update
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+            title: ID пользователя
+          required: true
+      tags:
+        - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedVKUserUpdate"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/PatchedVKUserUpdate"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PatchedVKUserUpdate"
+      security:
+        - tokenAuth: []
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VKUserUpdate"
+          description: ""
+components:
+  schemas:
+    AnswerRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        answer_text:
+          type: string
+          maxLength: 4096
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        user_query:
+          $ref: "#/components/schemas/QueryRead"
+      required:
+        - answer_text
+        - created_at
+        - id
+        - user_query
+    Commands:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          title: Заголовок
+          description: Заголовок будет использоваться в качестве текста кнопки
+          maxLength: 200
+        order:
+          type: integer
+          title: Порядок
+        description:
+          type: string
+          title: Описание
+          description: Описание будет использоваться в тексте команды
+          maxLength: 500
+        role:
+          allOf:
+            - $ref: "#/components/schemas/RoleEnum"
+          title: Роль
+        links:
+          type: array
+          items:
+            $ref: "#/components/schemas/URLLink"
+        attachments:
+          type: array
+          items:
+            $ref: "#/components/schemas/FileAttachment"
+      required:
+        - attachments
+        - id
+        - links
+        - role
+        - title
+    FileAttachment:
+      type: object
+      properties:
+        file:
+          type: string
+        title:
+          type: string
+          title: Заголовок
+          description: Заголовок будет использоваться в качестве текста кнопки
+          maxLength: 200
+        order:
+          type: integer
+          title: Порядок
+      required:
+        - file
+        - title
+    PatchedTelegramUserUpdate:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          readOnly: true
+        role:
+          $ref: "#/components/schemas/RoleEnum"
+        timezone:
+          $ref: "#/components/schemas/TimezoneEnum"
+    PatchedVKUserUpdate:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          readOnly: true
+        role:
+          $ref: "#/components/schemas/RoleEnum"
+        timezone:
+          type: string
+    QueryRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user_id:
+          type: integer
+          readOnly: true
+        question_text:
+          type: string
+          maxLength: 4096
+        message_id:
+          type: integer
+          title: ID сообщения
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - created_at
+        - id
+        - message_id
+        - question_text
+        - user_id
+    RoleEnum:
+      enum:
+        - parent
+        - logoped
+      type: string
+      description: |-
+        * `parent` - родитель
+        * `logoped` - логопед
+    TelegramQueryWrite:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        question_text:
+          type: string
+          maxLength: 4096
+        message_id:
+          type: integer
+          title: ID сообщения
+      required:
+        - message_id
+        - question_text
+        - user_id
+    TelegramUser:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          title: ID пользователя
+        role:
+          $ref: "#/components/schemas/RoleEnum"
+        timezone:
+          $ref: "#/components/schemas/TimezoneEnum"
+      required:
+        - role
+        - user_id
+    TelegramUserUpdate:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          readOnly: true
+        role:
+          $ref: "#/components/schemas/RoleEnum"
+        timezone:
+          $ref: "#/components/schemas/TimezoneEnum"
+      required:
+        - role
+        - user_id
+    TimezoneEnum:
+      enum:
+        - Europe/Kaliningrad
+        - Europe/Moscow
+        - Europe/Samara
+        - Asia/Yekaterinburg
+        - Asia/Omsk
+        - Asia/Krasnoyarsk
+        - Asia/Irkutsk
+        - Asia/Yakutsk
+        - Asia/Vladivostok
+        - Asia/Magadan
+        - Asia/Kamchatka
+      type: string
+      description: |-
+        * `Europe/Kaliningrad` - Калининградское (UTC+2)
+        * `Europe/Moscow` - Московское (UTC+3)
+        * `Europe/Samara` - Самарское (UTC+4)
+        * `Asia/Yekaterinburg` - Екатеринбургское (UTC+5)
+        * `Asia/Omsk` - Омское (UTC+6)
+        * `Asia/Krasnoyarsk` - Красноярское (UTC+7)
+        * `Asia/Irkutsk` - Иркутское (UTC+8)
+        * `Asia/Yakutsk` - Якутское (UTC+9)
+        * `Asia/Vladivostok` - Владивостокское (UTC+10)
+        * `Asia/Magadan` - Магаданское (UTC+11)
+        * `Asia/Kamchatka` - Камчатское (UTC+12)
+    URLLink:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          title: Ссылка
+          maxLength: 200
+        title:
+          type: string
+          title: Заголовок
+          description: Заголовок будет использоваться в качестве текста кнопки
+          maxLength: 200
+        order:
+          type: integer
+          title: Порядок
+      required:
+        - title
+        - url
+    VKQueryWrite:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        question_text:
+          type: string
+          maxLength: 4096
+        message_id:
+          type: integer
+          title: ID сообщения
+      required:
+        - message_id
+        - question_text
+        - user_id
+    VKUser:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          title: ID пользователя
+        role:
+          $ref: "#/components/schemas/RoleEnum"
+        timezone:
+          type: string
+      required:
+        - role
+        - user_id
+    VKUserUpdate:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          readOnly: true
+        role:
+          $ref: "#/components/schemas/RoleEnum"
+        timezone:
+          type: string
+      required:
+        - role
+        - user_id
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"

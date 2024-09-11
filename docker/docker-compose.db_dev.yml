@@ -1,0 +1,13 @@
+name: privet_logoped_db_for_dev
+volumes:
+  db_data:
+
+services:
+  privet_logoped_db:
+    image: postgres:16
+    env_file: .env
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
