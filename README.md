@@ -4,13 +4,9 @@
 ![Static Badge](https://img.shields.io/badge/aiogram-3.10-blue?style=flat)
 ![Static Badge](https://img.shields.io/badge/vkbottle-4.3-blue?style=flat)
 ![Static Badge](https://img.shields.io/badge/docker-white?style=flat&logo=docker&logoColor=%232496ED)
-![Static Badge](https://img.shields.io/badge/%7C%E2%80%BE%7C%20yandex-practicum-%23FF0000)
-
-# Privet_Logoped_team_2
-Боты для Телеграм и ВК для ООО “Привет, логопед!” | Команда Алишера
 
 # Описание
-Финальный проект курса Python-разработчик плюс. Боты для телеграма и вк.
+Боты для телеграма и вк с бэкендом на DRF в рамках хакатона для проекта Привет-логопед.
 
 # Задачи
 ## Сделано
@@ -152,7 +148,3 @@ docker-compose exec backend python manage.py migrate
 ```bash
 docker-compose exec backend python manage.py createsuperuser
 ```
-
-## API
-В каталоге django_app есть OpenApi схема - schema.yml.
-Ее можно посмотреть через [редактор](https://editor.swagger.io/)
